@@ -1,13 +1,18 @@
-import { Mongoose,model,Document,Schema } from "mongoose";
-export type tasks="assigned"|"inprogess"|"completed"
-export interface taskdata extends Document{
-    title:String,
-    description:String,
-    status:tasks
+import { model, Document, Schema, Types } from "mongoose";
+
+export type status = "assigned" | "inprogress" | "completed";
+export interface taskdata extends Document {
+  title: string;
+  description: string;
+  status: status;
+  assigned?: Types.ObjectId | null;
 }
-const tasks=new Schema<taskdata>({
-    title:{type:String},
-    description:{type:String,minLength:10},
-    status:{type:String,enum:["assigned","inprogess","completed"]}
-})
-export const task=model<taskdata>("task",tasks)
+const tasktable = new Schema<taskdata>({
+  title: { type: String, required: true },
+  description: { type: String, minLength: 10, required: true },
+  status: { type: String, enum: ["assigned", "inprogress", "completed"], default: "assigned" },
+  assigned: { type: Schema.Types.ObjectId, ref: "User", default: null }
+});
+
+const Task = model<taskdata>("Task",tasktable);
+export default Task

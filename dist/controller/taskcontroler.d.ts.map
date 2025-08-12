@@ -1,0 +1,1 @@
+{"version":3,"file":"taskcontroler.d.ts","sourceRoot":"","sources":["../../src/controller/taskcontroler.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAGjD,cAAM,cAAc;IACZ,UAAU,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ;IAkBtC,eAAe,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ;CAYlD;;AAED,wBAAkC"}
