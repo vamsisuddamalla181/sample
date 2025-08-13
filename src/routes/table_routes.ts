@@ -7,4 +7,5 @@ route.get("/getall",usercontrollers.getAllUsers)
 route.post("/posttask",taskcontroler.createtask)
 route.post("/assign/:userId",taskcontroler.assignTask)
 route.get("/user/:userId",taskcontroler.getTasksForUser)
+route.post("/taskuser/:userId",taskcontroler.assignTaskforUser)
 export default route;

@@ -16,7 +16,6 @@ class TaskController {
         res.status(400).json({ error: error.message });
     }
   }
-  
 
   async assignTask(req: Request, res: Response) {
     try {
@@ -33,6 +32,19 @@ class TaskController {
       } else {
         res.status(500).json({ error: error.message });
       }
+    }
+  }
+  async assignTaskforUser(req:Request,res: Response){
+    try{
+      const userId=req.params.userId
+      if(!userId){
+        throw new Error("user not found")
+      }
+      const taskassigned=await taskservice.assignTaskforUser(userId)
+      res.status(200).json(taskassigned)
+    }
+    catch(error){
+      res.status(500).json(error)
     }
   }
 
