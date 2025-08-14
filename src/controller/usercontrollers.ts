@@ -13,6 +13,7 @@ export class UserController {
       const hasheed=await bcrypt.hash(password,10)
       const user = await this.userRepo.createUser({...rest,password:hasheed});
       res.status(201).json(user);
+      await user.save()
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
