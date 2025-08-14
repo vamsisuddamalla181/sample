@@ -4,8 +4,10 @@ import taskcontroler from "../controller/taskcontroler.ts"
 import usercontrollers from "../controller/usercontrollers.ts"
 route.post("/post",usercontrollers.createUser)
 route.get("/getall",usercontrollers.getAllUsers)
+route.get("/getbyid/:userID",usercontrollers.getById)
+route.post("/update/:userId",usercontrollers.getByIdAndUpdate)
 route.post("/posttask",taskcontroler.createtask)
 route.post("/assign/:userId",taskcontroler.assignTask)
 route.get("/user/:userId",taskcontroler.getTasksForUser)
 route.post("/taskuser/:userId",taskcontroler.assignTaskforUser)
-export default route;
+export default route

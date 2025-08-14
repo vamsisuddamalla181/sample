@@ -1,6 +1,5 @@
 import usertable from "../models/user.ts";
 import Task, {type taskdata } from "../models/task.ts";
-import User from "../models/user.ts";
 
 const taskservice = {
   async assigntask(userId: string, data: Partial<taskdata>) {
@@ -15,6 +14,7 @@ const taskservice = {
       assigned: userId
     });
     return newTask.save();
+    
   },
   async assignTaskforUser(userId:string){
     const findassigned=await usertable.findById(userId)
