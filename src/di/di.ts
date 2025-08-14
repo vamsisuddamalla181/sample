@@ -7,4 +7,3 @@ container.register(UserRepository,{useClass:UserRepository})
 container.register(UserController,{useClass:UserController})
 container.register(taskRepository,{useClass:taskRepository})
 container.register(TaskController,{useClass:TaskController})
-

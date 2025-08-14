@@ -10,7 +10,7 @@ route.get("/getall", controller.getAllUsers.bind(controller));
 route.get("/getbyid/:userId", controller.getById.bind(controller));
 route.post("/update/:userId", controller.getByIdAndUpdate.bind(controller));
 route.post("/posttask",taskcontroller.createTask.bind(controller));
-route.post("/assign/:userId",taskcontroller.assignTask.bind(controller));
+route.post("/assign/:userId",taskcontroller.createTask.bind(controller));
 route.get("/user/:userId",taskcontroller.getTasksForUser.bind(controller));
 route.post("/taskuser/:userId",taskcontroller.assignUnassignedTasks.bind(controller));
 export default route

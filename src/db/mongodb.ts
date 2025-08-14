@@ -8,7 +8,7 @@ export const mongo = async () => {
         }
         const mongo = mongoose.connect(url)
             .then(() => {
-                console.log("servr is connected to the database")
+                console.log("server is connected to the database")
             })
             .catch((error) => {
                 console.log("server is not connected")
