@@ -28,8 +28,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.1",
     "nodemon": "^3.1.10",
+    "reflect-metadata": "^0.2.2",
     "tsc": "^2.0.4",
     "tsx": "^4.20.3",
+    "tsyringe": "^4.10.0",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
