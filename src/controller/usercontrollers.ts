@@ -1,13 +1,10 @@
-import "reflect-metadata"
+import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import {userrepository} from "../repository/userrepository.ts";
-
+import { UserRepository } from "../repository/userrepository.ts";
 @injectable()
 export class UserController {
-  constructor(@inject(userrepository)private userRepo:userrepository){
-    
-  }
+  constructor(@inject(UserRepository) private userRepo: UserRepository) {}
 
   async createUser(req: Request, res: Response) {
     try {
@@ -30,9 +27,7 @@ export class UserController {
   async getById(req: Request, res: Response) {
     try {
       const userId = req.params.userId;
-      if(!userId){
-        throw new Error("user id not found")
-      }
+      if (!userId) throw new Error("user id not found");
       const user = await this.userRepo.getById(userId);
       if (!user) throw new Error("User not found");
       res.status(200).json(user);
@@ -44,11 +39,8 @@ export class UserController {
   async getByIdAndUpdate(req: Request, res: Response) {
     try {
       const userId = req.params.userId;
-      if(!userId){
-        throw new Error("user id not found")
-      }
-      const updateData = req.body;
-      const updatedUser = await this.userRepo.updateById(userId, updateData);
+      if (!userId) throw new Error("user id not found");
+      const updatedUser = await this.userRepo.updateById(userId, req.body);
       if (!updatedUser) throw new Error("Cannot update user");
       res.status(200).json(updatedUser);
     } catch (error: any) {
