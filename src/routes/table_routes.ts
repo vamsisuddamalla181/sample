@@ -9,8 +9,8 @@ route.post("/post",controller.createUser.bind(controller))
 route.get("/getall", controller.getAllUsers.bind(controller));
 route.get("/getbyid/:userID", controller.getById.bind(controller));
 route.post("/update/:userId", controller.getById.bind(controller));
-route.post("/posttask",taskcontroller.createTask)
-route.post("/assign/:userId",taskcontroller.assignTask)
-route.get("/user/:userId",taskcontroller.getTasksForUser)
-route.post("/taskuser/:userId",taskcontroller.assignUnassignedTasks)
+route.post("/posttask",taskcontroller.createTask.bind(controller));
+route.post("/assign/:userId",taskcontroller.assignTask.bind(controller));
+route.get("/user/:userId",taskcontroller.getTasksForUser.bind(controller));
+route.post("/taskuser/:userId",taskcontroller.assignUnassignedTasks.bind(controller));
 export default route
