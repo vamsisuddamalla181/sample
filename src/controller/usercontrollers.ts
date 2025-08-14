@@ -3,17 +3,21 @@ import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
 import { UserRepository } from "../repository/userrepository.ts";
 import bcrypt from "bcrypt"
+import { userValidationSchema } from "../validations/joischema.ts";
 @injectable()
 export class UserController {
   constructor(@inject(UserRepository) private userRepo: UserRepository) {}
 
   async createUser(req: Request, res: Response) {
     try {
+      const {error,value}=userValidationSchema.validate(req.body)
+      if(error){
+        console.log(error.message)
+      }
       const{password,...rest}=req.body
       const hasheed=await bcrypt.hash(password,10)
-      const user = await this.userRepo.createUser({...rest,password:hasheed});
+      const user = await this.userRepo.create({...rest,password:hasheed});
       res.status(201).json(user);
-      await user.save()
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
@@ -21,7 +25,7 @@ export class UserController {
 
   async getAllUsers(req: Request, res: Response) {
     try {
-      const users = await this.userRepo.getAllUsers();
+      const users = await this.userRepo.getAll();
       res.json(users);
     } catch (error: any) {
       res.status(500).json({ error: error.message });

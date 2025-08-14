@@ -4,7 +4,8 @@ export interface userdata extends Document {
   email: string;
   phone:String;
   fullname:String;
-  password:String
+  password:String;
+  role:String
 }
 const userSchema = new Schema<userdata>({
   username: { type: String, minLength: 5, required: true },
@@ -15,7 +16,8 @@ const userSchema = new Schema<userdata>({
   },
   phone:{type:String,match:[/^\+91\d{10}$/,"please enter +91 before entering your number"],required:true},
   fullname:{type:String,minlength:5,maxlength:30,required:true},
-  password:{type:String,required:true}
+  password: { type: String, required: true, select: false },
+  role:{type:String,enum:["admin","normaluser"],required:true}
 });
 
 const User = model<userdata>("User", userSchema);

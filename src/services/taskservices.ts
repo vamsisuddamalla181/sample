@@ -1,28 +1,27 @@
 import usertable from "../models/user.ts";
-import Task, {type taskdata } from "../models/task.ts";
-import jwt from "jsonwebtoken"
+import Task, { type taskdata } from "../models/task.ts";
 
 const taskservice = {
+
   async assigntask(userId: string, data: Partial<taskdata>) {
-    const find = await usertable.findById(userId);
-    if (!find) {
-      throw new Error("User not found");
-    }
+    const user = await usertable.findById(userId);
+    if (!user) throw new Error("User not found");
+
     const newTask = new Task({
       title: data.title,
       description: data.description,
       status: data.status || "assigned",
-      assigned: userId
+      assigned: userId,
     });
+
     return newTask.save();
-    
   },
-  async assignTaskforUser(userId:string){
-    const findassigned=await usertable.findById(userId)
-    if(!findassigned){
-      throw new Error("user not found")
-    }
-    await Task.updateMany({assigned:null},{$set:{assigned:userId}})
+
+  async assignTaskforUser(userId: string) {
+    const user = await usertable.findById(userId);
+    if (!user) throw new Error("User not found");
+
+    await Task.updateMany({ assigned: null }, { $set: { assigned: userId } });
   },
 
   async newtaskforuser(userId: string) {
