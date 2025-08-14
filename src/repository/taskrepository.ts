@@ -10,6 +10,12 @@ export class taskRepository {
   async findUserById(userId: string) {
     return await usertable.findById(userId);
   }
+  async assignTasksToUser(userId: string) {
+  return await Task.updateOne(
+    { assignedTo: null }, // Only unassigned tasks
+    { assignedTo: userId }
+  );
+}
 
   async assignUnassignedTasks(userId: string) {
     return await Task.updateMany(

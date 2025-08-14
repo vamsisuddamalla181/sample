@@ -24,7 +24,7 @@ export class TaskController {
       const user = await this.taskRepo.findUserById(userId);
       if (!user) throw new Error("User not found");
 
-      const updatedTasks = await this.taskRepo.assignUnassignedTasks(userId);
+      const updatedTasks = await this.taskRepo.assignTasksToUser(userId);
       res.status(200).json(updatedTasks);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
@@ -56,5 +56,6 @@ export class TaskController {
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
+    
   }
 }
