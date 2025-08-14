@@ -20,23 +20,6 @@ export class TaskController {
     }
   }
 
-<<<<<<< HEAD:src/controller/taskcontroller.ts
-  async assignTask(req: Request, res: Response) {
-    try {
-      const userId = req.params.userId;
-      if (!userId) throw new Error("User ID not found");
-
-      const user = await this.taskRepo.findUserById(userId);
-      if (!user) throw new Error("User not found");
-
-      const updatedTasks = await this.taskRepo.assignTasksToUser(userId);
-      res.status(200).json(updatedTasks);
-    } catch (error: any) {
-      res.status(500).json({ error: error.message });
-    }
-  }
-=======
->>>>>>> f4603127dc1acfaaa15c710a9043deeea8484c08:src/controller/taskcontroler.ts
 
   async assignUnassignedTasks(req: Request, res: Response) {
     try {
@@ -63,6 +46,5 @@ export class TaskController {
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
-    
   }
 }
