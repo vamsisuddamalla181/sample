@@ -1,5 +1,6 @@
 import usertable from "../models/user.ts";
 import Task, {type taskdata } from "../models/task.ts";
+import jwt from "jsonwebtoken"
 
 const taskservice = {
   async assigntask(userId: string, data: Partial<taskdata>) {

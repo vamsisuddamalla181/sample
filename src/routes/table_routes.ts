@@ -7,8 +7,8 @@ const controller=container.resolve(UserController)
 const taskcontroller=container.resolve(TaskController)
 route.post("/post",controller.createUser.bind(controller))
 route.get("/getall", controller.getAllUsers.bind(controller));
-route.get("/getbyid/:userID", controller.getById.bind(controller));
-route.post("/update/:userId", controller.getById.bind(controller));
+route.get("/getbyid/:userId", controller.getById.bind(controller));
+route.post("/update/:userId", controller.getByIdAndUpdate.bind(controller));
 route.post("/posttask",taskcontroller.createTask)
 route.post("/assign/:userId",taskcontroller.assignTask)
 route.get("/user/:userId",taskcontroller.getTasksForUser)

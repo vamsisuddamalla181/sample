@@ -2,13 +2,16 @@ import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
 import { UserRepository } from "../repository/userrepository.ts";
+import bcrypt from "bcrypt"
 @injectable()
 export class UserController {
   constructor(@inject(UserRepository) private userRepo: UserRepository) {}
 
   async createUser(req: Request, res: Response) {
     try {
-      const user = await this.userRepo.createUser(req.body);
+      const{password,...rest}=req.body
+      const hasheed=await bcrypt.hash(password,10)
+      const user = await this.userRepo.createUser({...rest,password:hasheed});
       res.status(201).json(user);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
