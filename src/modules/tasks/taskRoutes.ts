@@ -63,7 +63,7 @@ taskroute.post("/assigntask/user/:userId",taskcontroller.assignTask.bind(taskcon
  *       200:
  *         description: List of tasks
  */
-taskroute.get("gettask/user/:userId",taskcontroller.getTasksForUser.bind(taskcontroller));
+taskroute.get("/gettask/user/:userId",taskcontroller.getTasksForUser.bind(taskcontroller));
 
 /**
  * @swagger
@@ -82,6 +82,6 @@ taskroute.get("gettask/user/:userId",taskcontroller.getTasksForUser.bind(taskcon
  *       200:
  *         description: Unassigned tasks assigned successfully
  */
-taskroute.post("assignunassigned/user/:userId",taskcontroller.assignUnassignedTasks.bind(taskcontroller));
+taskroute.post("/assignunassigned/user/:userId",taskcontroller.assignUnassignedTasks.bind(taskcontroller));
 
 export default taskroute;

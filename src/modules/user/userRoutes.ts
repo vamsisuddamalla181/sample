@@ -82,5 +82,5 @@ userroute.get("/getbyid/user/:userId", usercontroller.getById.bind(usercontrolle
  *       200:
  *         description: User updated successfully
  */
-userroute.post("update/user/:userId", usercontroller.getByIdAndUpdate.bind(usercontroller));
+userroute.post("/update/user/:userId", usercontroller.getByIdAndUpdate.bind(usercontroller));
 export default userroute
