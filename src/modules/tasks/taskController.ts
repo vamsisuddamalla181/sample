@@ -3,6 +3,7 @@ import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
 import taskservice from "./taskServices.ts";
 import Task from "./task.ts";
+import { taskValidationSchema } from "../../core/validations/joischema.ts";
 
 @injectable()
 export class TaskController {
@@ -10,8 +11,12 @@ export class TaskController {
 
   async createTask(req: Request, res: Response) {
     try {
+      const{error}=taskValidationSchema.validate(req.body)
+      if(error){
+        throw new Error("Does not meet validation")
+        res.status(404).json(error)
+      }
       const { ...taskData } = req.body;
-
       const newTask = await Task.create({...taskData})
       res.status(201).json(newTask);
     } catch (error: any) {
