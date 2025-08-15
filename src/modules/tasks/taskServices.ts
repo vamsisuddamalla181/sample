@@ -1,5 +1,5 @@
-import Task, { type taskdata } from "./task.ts";
-import User from "../user/user.ts";
+import Task, { type taskdata } from "./task";
+import User from "../user/user";
 const taskservice = {
 
   async assigntask(userId: string, data: Partial<taskdata>) {

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tsyringe_1 = require("tsyringe");
+const userControllers_1 = require("../../modules/user/userControllers");
+const userRepository_1 = require("../../modules/user/userRepository");
+const taskController_1 = require("../../modules/tasks/taskController");
+const taskRepository_1 = require("../../modules/tasks/taskRepository");
+tsyringe_1.container.register(userRepository_1.UserRepository, { useClass: userRepository_1.UserRepository });
+tsyringe_1.container.register(userControllers_1.UserController, { useClass: userControllers_1.UserController });
+tsyringe_1.container.register(taskRepository_1.taskRepository, { useClass: taskRepository_1.taskRepository });
+tsyringe_1.container.register(taskController_1.TaskController, { useClass: taskController_1.TaskController });

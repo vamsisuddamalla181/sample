@@ -1,9 +1,13 @@
-import express from "express"
-const taskroute=express.Router()
-import { container } from "tsyringe"
-import { TaskController } from "./taskController"
-const taskcontroller=container.resolve(TaskController)
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const taskroute = express_1.default.Router();
+const tsyringe_1 = require("tsyringe");
+const taskController_1 = require("./taskController");
+const taskcontroller = tsyringe_1.container.resolve(taskController_1.TaskController);
 /**
  * @swagger
  * /posttask:
@@ -25,8 +29,7 @@ const taskcontroller=container.resolve(TaskController)
  *       201:
  *         description: Task created successfully
  */
-taskroute.post("/posttask",taskcontroller.createTask.bind(taskcontroller));
-
+taskroute.post("/posttask", taskcontroller.createTask.bind(taskcontroller));
 /**
  * @swagger
  * /assign/{userId}:
@@ -44,8 +47,7 @@ taskroute.post("/posttask",taskcontroller.createTask.bind(taskcontroller));
  *       200:
  *         description: Task assigned successfully
  */
-taskroute.post("/assigntask/user/:userId",taskcontroller.assignTask.bind(taskcontroller));
-
+taskroute.post("/assigntask/user/:userId", taskcontroller.assignTask.bind(taskcontroller));
 /**
  * @swagger
  * /user/{userId}:
@@ -63,8 +65,7 @@ taskroute.post("/assigntask/user/:userId",taskcontroller.assignTask.bind(taskcon
  *       200:
  *         description: List of tasks
  */
-taskroute.get("/gettask/user/:userId",taskcontroller.getTasksForUser.bind(taskcontroller));
-
+taskroute.get("/gettask/user/:userId", taskcontroller.getTasksForUser.bind(taskcontroller));
 /**
  * @swagger
  * /taskuser/{userId}:
@@ -82,6 +83,5 @@ taskroute.get("/gettask/user/:userId",taskcontroller.getTasksForUser.bind(taskco
  *       200:
  *         description: Unassigned tasks assigned successfully
  */
-taskroute.post("/assignunassigned/user/:userId",taskcontroller.assignUnassignedTasks.bind(taskcontroller));
-
-export default taskroute;
+taskroute.post("/assignunassigned/user/:userId", taskcontroller.assignUnassignedTasks.bind(taskcontroller));
+exports.default = taskroute;

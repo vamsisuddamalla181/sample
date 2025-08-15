@@ -1,9 +1,9 @@
 import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import taskservice from "./taskServices.ts";
-import Task from "./task.ts";
-import { taskValidationSchema } from "../../core/validations/joischema.ts";
+import taskservice from "./taskServices";
+import Task from "./task";
+import { taskValidationSchema } from "../../core/validations/joischema";
 
 @injectable()
 export class TaskController {

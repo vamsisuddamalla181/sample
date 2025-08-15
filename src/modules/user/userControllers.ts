@@ -1,9 +1,9 @@
 import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import { UserRepository } from "./userRepository.ts";
+import { UserRepository } from "./userRepository";
 import bcrypt from "bcrypt"
-import { userValidationSchema } from "../../core/validations/joischema.ts";
+import { userValidationSchema } from "../../core/validations/joischema";
 @injectable()
 export class UserController {
   constructor(@inject(UserRepository) private userRepo: UserRepository) {}

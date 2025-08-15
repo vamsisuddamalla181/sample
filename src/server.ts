@@ -1,12 +1,12 @@
 import express from "express";
 import type{ Request,Response} from "express";
 
-import {mongo} from "./config/db/mongodb.ts"
+import {mongo} from "./config/db/mongodb"
 import dotenv from "dotenv"
 import cors from "cors"
-import { swaggerUi, swaggerSpec } from "./docs/swagger.ts";
-import userroute from "./modules/user/userRoutes.ts";
-import taskroute from "./modules/tasks/taskRoutes.ts";
+import { swaggerUi, swaggerSpec } from "./docs/swagger";
+import userroute from "./modules/user/userRoutes";
+import taskroute from "./modules/tasks/taskRoutes";
 dotenv.config()
 const app=express()
 

@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
+    "target": "es6",
+    "module": "commonjs",
     "outDir": "./dist",
-    "module": "nodenext",
-    "target": "esnext",
-    "strict": true,
-    "sourceMap": true,
-    "declaration": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true
-  }
+  },
+  "include": [
+      "src"
+    ]
 }

@@ -1,9 +1,13 @@
-import express from "express"
-const userroute=express.Router()
-import { UserController } from "./userControllers"
-import { container } from "tsyringe"
-const usercontroller=container.resolve(UserController)
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const userroute = express_1.default.Router();
+const userControllers_1 = require("./userControllers");
+const tsyringe_1 = require("tsyringe");
+const usercontroller = tsyringe_1.container.resolve(userControllers_1.UserController);
 /**
  * @swagger
  * /post:
@@ -25,8 +29,7 @@ const usercontroller=container.resolve(UserController)
  *       201:
  *         description: User created successfully
  */
-userroute.post("/userdetails",usercontroller.createUser.bind(usercontroller))
-
+userroute.post("/userdetails", usercontroller.createUser.bind(usercontroller));
 /**
  * @swagger
  * /getall:
@@ -38,8 +41,6 @@ userroute.post("/userdetails",usercontroller.createUser.bind(usercontroller))
  *         description: List of all users
  */
 userroute.get("/getall", usercontroller.getAllUsers.bind(usercontroller));
-
-
 /**
  * @swagger
  * /getbyid/{userId}:
@@ -58,7 +59,6 @@ userroute.get("/getall", usercontroller.getAllUsers.bind(usercontroller));
  *         description: User found
  */
 userroute.get("/getbyid/user/:userId", usercontroller.getById.bind(usercontroller));
-
 /**
  * @swagger
  * /update/{userId}:
@@ -83,4 +83,4 @@ userroute.get("/getbyid/user/:userId", usercontroller.getById.bind(usercontrolle
  *         description: User updated successfully
  */
 userroute.post("/update/user/:userId", usercontroller.getByIdAndUpdate.bind(usercontroller));
-export default userroute
+exports.default = userroute;
