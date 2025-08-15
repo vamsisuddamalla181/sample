@@ -12,7 +12,7 @@ route.post("/update/:userId", controller.getByIdAndUpdate.bind(controller));
 
 
 route.post("/posttask",taskcontroller.createTask.bind(taskcontroller));
-route.post("/assign/:userId",taskcontroller.createTask.bind(taskcontroller));
+route.post("/assign/:userId",taskcontroller.assignTask.bind(taskcontroller));
 route.get("/user/:userId",taskcontroller.getTasksForUser.bind(taskcontroller));
 route.post("/taskuser/:userId",taskcontroller.assignUnassignedTasks.bind(taskcontroller));
 export default route

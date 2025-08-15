@@ -55,4 +55,15 @@ export class UserController {
       res.status(500).json({ error: error.message });
     }
   }
+  async deleteById(req: Request, res: Response) {
+    try {
+      const userId = req.params.userId;
+      if (!userId) throw new Error("user id not found");
+      const deletedUser = await this.userRepo.deleteById(userId);
+      if (!deletedUser) throw new Error("User not found or already deleted");
+      res.status(200).json({ message: "User deleted successfully" });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }

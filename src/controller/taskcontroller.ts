@@ -2,6 +2,7 @@ import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
 import taskservice from "../services/taskservices.ts";
+import Task from "../models/task.ts";
 
 @injectable()
 export class TaskController {
@@ -9,7 +10,20 @@ export class TaskController {
 
   async createTask(req: Request, res: Response) {
     try {
-      const { userId, ...taskData } = req.body;
+      const { ...taskData } = req.body;
+
+      const newTask = await Task.create({...taskData})
+      res.status(201).json(newTask);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+
+  async assignTask(req: Request, res: Response) {
+    try {
+      const {...taskData } = req.body;
+      const userId=req.params.userId
 
       if (!userId) throw new Error("User ID is required to assign task");
 
@@ -19,7 +33,6 @@ export class TaskController {
       res.status(500).json({ error: error.message });
     }
   }
-
 
   async assignUnassignedTasks(req: Request, res: Response) {
     try {
