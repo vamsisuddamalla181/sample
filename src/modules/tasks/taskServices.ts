@@ -1,10 +1,9 @@
-import usertable from "../models/user.ts";
-import Task, { type taskdata } from "../models/task.ts";
-
+import Task, { type taskdata } from "./task.ts";
+import User from "../user/user.ts";
 const taskservice = {
 
   async assigntask(userId: string, data: Partial<taskdata>) {
-    const user = await usertable.findById(userId);
+    const user = await User.findById(userId);
     if (!user) throw new Error("User not found");
 
     const newTask = new Task({
@@ -18,7 +17,7 @@ const taskservice = {
   },
 
   async assignTaskforUser(userId: string) {
-    const user = await usertable.findById(userId);
+    const user = await User.findById(userId);
     if (!user) throw new Error("User not found");
 
     await Task.updateMany({ assigned: null }, { $set: { assigned: userId } });

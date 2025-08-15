@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import type { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import taskservice from "../services/taskservices.ts";
-import Task from "../models/task.ts";
+import taskservice from "./taskServices.ts";
+import Task from "./task.ts";
 
 @injectable()
 export class TaskController {

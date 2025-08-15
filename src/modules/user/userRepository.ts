@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import User, { type userdata } from "../models/user.ts";
-import { IRepository } from "../shared/interfaces/IRepository.ts";
+import User,{type userdata} from "./user.ts";
+import { IRepository } from "../../shared/interfaces/IRepository.ts";
 import { promises } from "node:dns";
 
 @injectable()

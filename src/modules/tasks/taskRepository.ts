@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
-import Task, { type taskdata } from "../models/task.ts";
-import usertable from "../models/user.ts";
-import { IRepository } from "../shared/interfaces/IRepository.ts";
+import Task,{type taskdata} from "./task.ts";
+import User from "../user/user.ts";
+import { IRepository } from "../../shared/interfaces/IRepository.ts";
 
 @injectable()
 export class taskRepository implements IRepository<taskdata> {
