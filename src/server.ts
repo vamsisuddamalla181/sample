@@ -14,7 +14,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/", taskroute);
 app.use("/", userroute);
 app.use(express.json())
-let PORT=3000
+let PORT=8000
 app.use(cors())
 mongo()
 app.get("/sample",(req:Request,res:Response)=>{
@@ -22,7 +22,7 @@ app.get("/sample",(req:Request,res:Response)=>{
 })
 app.listen(PORT,()=>{
     console.log(`server is running on the port ${PORT}`);
-     console.log("Swagger docs at http://localhost:3000/api-docs");
+     console.log("Swagger docs at http://localhost:8000/api-docs");
 })
 
 app.use("/user",userroute)
