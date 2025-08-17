@@ -12,7 +12,7 @@ const app=express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-let PORT=8000
+const PORT=5500
 app.use(cors())
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -26,8 +26,10 @@ app.get("/sample",(req:Request,res:Response)=>{
 })
 app.listen(PORT,()=>{
     console.log(`server is running on the port ${PORT}`);
-     console.log("Swagger docs at http://localhost:8000/api-docs");
+     console.log("Swagger docs at http://localhost:5500/api-docs");
 })
 
 app.use("/user",userroute)
 app.use("/tasks",taskroute)
+
+
