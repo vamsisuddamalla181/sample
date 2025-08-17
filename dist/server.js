@@ -12,12 +12,13 @@ const userRoutes_1 = __importDefault(require("./modules/user/userRoutes"));
 const taskRoutes_1 = __importDefault(require("./modules/tasks/taskRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+let PORT = 8000;
+app.use((0, cors_1.default)());
 app.use("/api-docs", swagger_1.swaggerUi.serve, swagger_1.swaggerUi.setup(swagger_1.swaggerSpec));
 app.use("/", taskRoutes_1.default);
 app.use("/", userRoutes_1.default);
-app.use(express_1.default.json());
-let PORT = 8000;
-app.use((0, cors_1.default)());
 (0, mongodb_1.mongo)();
 app.get("/sample", (req, res) => {
     res.send("hello world");
@@ -27,4 +28,4 @@ app.listen(PORT, () => {
     console.log("Swagger docs at http://localhost:8000/api-docs");
 });
 app.use("/user", userRoutes_1.default);
-app.use("/task", taskRoutes_1.default);
+app.use("/tasks", taskRoutes_1.default);

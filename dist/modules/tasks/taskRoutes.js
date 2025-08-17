@@ -25,6 +25,8 @@ const taskcontroller = tsyringe_1.container.resolve(taskController_1.TaskControl
  *                 type: string
  *               description:
  *                 type: string
+ *               status:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Task created successfully
@@ -32,25 +34,48 @@ const taskcontroller = tsyringe_1.container.resolve(taskController_1.TaskControl
 taskroute.post("/posttask", taskcontroller.createTask.bind(taskcontroller));
 /**
  * @swagger
- * /assign/{userId}:
+ * /assigntask/user/{userId}:
  *   post:
- *     summary: Assign a task to a user
+ *     summary: Assign a single task to a user
  *     tags: [Tasks]
  *     parameters:
  *       - in: path
  *         name: userId
+ *         required: true
  *         schema:
  *           type: string
- *         required: true
- *         description: The user ID
+ *         description: The ID of the user to assign the task to
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Fix login bug"
+ *               description:
+ *                 type: string
+ *                 example: "Investigate and resolve the login issue in the app"
+ *               status:
+ *                 type: string
+ *                 enum: [todo, assigned, inprogress, completed]
+ *                 example: "assigned"
  *     responses:
- *       200:
+ *       201:
  *         description: Task assigned successfully
+ *       400:
+ *         description: Invalid request
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
  */
 taskroute.post("/assigntask/user/:userId", taskcontroller.assignTask.bind(taskcontroller));
 /**
  * @swagger
- * /user/{userId}:
+ * /gettask/user/{userId}:
  *   get:
  *     summary: Get tasks for a specific user
  *     tags: [Tasks]
@@ -68,7 +93,7 @@ taskroute.post("/assigntask/user/:userId", taskcontroller.assignTask.bind(taskco
 taskroute.get("/gettask/user/:userId", taskcontroller.getTasksForUser.bind(taskcontroller));
 /**
  * @swagger
- * /taskuser/{userId}:
+ * /assignunassigned/user/{userId}:
  *   post:
  *     summary: Assign unassigned tasks to a user
  *     tags: [Tasks]

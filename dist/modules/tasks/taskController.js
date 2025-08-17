@@ -56,11 +56,11 @@ let TaskController = class TaskController {
     assignTask(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const taskData = __rest(req.body, []);
+                const data = __rest(req.body, []);
                 const userId = req.params.userId;
                 if (!userId)
                     throw new Error("User ID is required to assign task");
-                const newTask = yield taskServices_1.default.assigntask(userId, taskData);
+                const newTask = yield taskServices_1.default.assigntask(userId, data);
                 res.status(201).json(newTask);
             }
             catch (error) {
