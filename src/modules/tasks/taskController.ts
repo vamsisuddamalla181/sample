@@ -27,12 +27,12 @@ export class TaskController {
 
   async assignTask(req: Request, res: Response) {
     try {
-      const {...taskData } = req.body;
+      const {...data } = req.body;
       const userId=req.params.userId
 
       if (!userId) throw new Error("User ID is required to assign task");
 
-      const newTask = await taskservice.assigntask(userId, taskData);
+      const newTask = await taskservice.assigntask(userId, data);
       res.status(201).json(newTask);
     } catch (error: any) {
       res.status(500).json({ error: error.message });

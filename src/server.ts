@@ -30,4 +30,4 @@ app.listen(PORT,()=>{
 })
 
 app.use("/user",userroute)
-app.use("/task",taskroute)
+app.use("/tasks",taskroute)

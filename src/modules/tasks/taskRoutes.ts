@@ -31,17 +31,17 @@ taskroute.post("/posttask",taskcontroller.createTask.bind(taskcontroller));
 
 /**
  * @swagger
- * /assign/user/{userId}:
+ * /assigntask/user/{userId}:
  *   post:
- *     summary: Assign a task to a user
+ *     summary: Assign a single task to a user
  *     tags: [Tasks]
  *     parameters:
  *       - in: path
  *         name: userId
+ *         required: true
  *         schema:
  *           type: string
- *         required: true
- *         description: The user ID
+ *         description: The ID of the user to assign the task to
  *     requestBody:
  *       required: true
  *       content:
@@ -63,11 +63,11 @@ taskroute.post("/posttask",taskcontroller.createTask.bind(taskcontroller));
  *       201:
  *         description: Task assigned successfully
  *       400:
- *         description: Invalid input
+ *         description: Invalid request
  *       404:
  *         description: User not found
  *       500:
- *         description: Server error
+ *         description: Internal server error
  */
 
 taskroute.post("/assigntask/user/:userId",taskcontroller.assignTask.bind(taskcontroller));
