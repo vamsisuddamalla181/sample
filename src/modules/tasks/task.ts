@@ -10,7 +10,7 @@ export interface taskdata extends Document {
 const tasktable = new Schema<taskdata>({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  status: { type: String, enum: ["assigned", "inprogress", "completed"], default: "assigned" },
+  status: { type: String, enum: ["todo","assigned", "inprogress", "completed"], default: "assigned" },
   assigned: { type: Schema.Types.ObjectId, ref: "User", default: null }
 });
 

@@ -10,12 +10,16 @@ import taskroute from "./modules/tasks/taskRoutes";
 dotenv.config()
 const app=express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+let PORT=8000
+app.use(cors())
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/", taskroute);
 app.use("/", userroute);
-app.use(express.json())
-let PORT=8000
-app.use(cors())
+
+
 mongo()
 app.get("/sample",(req:Request,res:Response)=>{
     res.send("hello world")

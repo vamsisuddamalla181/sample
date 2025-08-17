@@ -6,17 +6,20 @@ import bcrypt from "bcrypt"
 import { userValidationSchema } from "../../core/validations/joischema";
 @injectable()
 export class UserController {
-  constructor(@inject(UserRepository) private userRepo: UserRepository) {}
+  constructor(@inject(UserRepository) private userRepo: UserRepository) { }
 
   async createUser(req: Request, res: Response) {
     try {
-      const {error,value}=userValidationSchema.validate(req.body)
-      if(error){
+      const { error, value } = userValidationSchema.validate(req.body)
+      if (error) {
         console.log(error.message)
       }
-      const{password,...rest}=req.body
-      const hasheed=await bcrypt.hash(password,10)
-      const user = await this.userRepo.create({...rest,password:hasheed});
+      const { username,email,phone,fullname,password,role } = req.body || {}
+      if (!password) {
+        return res.status(400).json({ error: "Password is required" });
+      }
+      const hasheed = await bcrypt.hash(password, 10)
+      const user = await this.userRepo.create({username,email,phone,fullname,password:hasheed,role });
       res.status(201).json(user);
     } catch (error: any) {
       res.status(500).json({ error: error.message });

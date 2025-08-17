@@ -6,7 +6,7 @@ const usercontroller=container.resolve(UserController)
 
 /**
  * @swagger
- * /post:
+ * /userdetails:
  *   post:
  *     summary: Create a new user
  *     tags: [Users]
@@ -17,14 +17,29 @@ const usercontroller=container.resolve(UserController)
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               username:
  *                 type: string
+ *                 example: vamsi
  *               email:
  *                 type: string
+ *                 example: vamsi@gmail.com
+ *               phone:
+ *                 type: string
+ *                 example: "+919550085451"
+ *               fullname:
+ *                 type: string
+ *                 example: vamsikrishna
+ *               password:
+ *                 type: string
+ *                 example: vamsi@123
+ *               role:
+ *                 type: string
+ *                 example: admin
  *     responses:
  *       201:
  *         description: User created successfully
  */
+
 userroute.post("/userdetails",usercontroller.createUser.bind(usercontroller))
 
 /**
@@ -42,7 +57,7 @@ userroute.get("/getall", usercontroller.getAllUsers.bind(usercontroller));
 
 /**
  * @swagger
- * /getbyid/{userId}:
+ * /getbyid/user/{userId}:
  *   get:
  *     summary: Get user by ID
  *     tags: [Users]
@@ -58,10 +73,9 @@ userroute.get("/getall", usercontroller.getAllUsers.bind(usercontroller));
  *         description: User found
  */
 userroute.get("/getbyid/user/:userId", usercontroller.getById.bind(usercontroller));
-
 /**
  * @swagger
- * /update/{userId}:
+ * /update/user/{userId}:
  *   post:
  *     summary: Update user by ID
  *     tags: [Users]
@@ -78,9 +92,36 @@ userroute.get("/getbyid/user/:userId", usercontroller.getById.bind(usercontrolle
  *         application/json:
  *           schema:
  *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "vamsi krishna"
+ *               email:
+ *                 type: string
+ *                 example: "vamsik@gmail.com"
+ *               phone:
+ *                 type: string
+ *                 example: "+919550085451"
+ *               fullname:
+ *                 type: string
+ *                 example: "vamsikrishna"
+ *               password:
+ *                 type: string
+ *                 example: "P@ssw0rd123"
+ *               role:
+ *                 type: string
+ *                 enum: [normaluser, admin]
+ *                 example: "admin"
  *     responses:
  *       200:
  *         description: User updated successfully
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Server error
  */
+
 userroute.post("/update/user/:userId", usercontroller.getByIdAndUpdate.bind(usercontroller));
 export default userroute
