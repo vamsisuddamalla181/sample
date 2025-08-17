@@ -16,7 +16,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: "https://my-app.vercel.app",
+            url: "https://tasktouser.vercel.app",
         },
     ],
 };

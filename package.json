@@ -1,24 +1,12 @@
 {
   "name": "sample",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./dist && tsc",
-    "start": "tsx watch ./src/server"
+    "start": "node dist/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vamsisuddamalla181/sample.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vamsisuddamalla181/sample/issues"
-  },
-  "homepage": "https://github.com/vamsisuddamalla181/sample#readme",
-  "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -32,9 +20,9 @@
     "rimraf": "^6.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "tsc": "^2.0.4",
     "tsx": "^4.20.3",
-    "tsyringe": "^4.10.0"
+    "tsyringe": "^4.10.0",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -43,7 +31,6 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.0",
     "@types/reflect-metadata": "^0.0.5",
-    "@types/swagger-ui-express": "^4.1.8",
-    "typescript": "^5.9.2"
+    "@types/swagger-ui-express": "^4.1.8"
   }
 }
