@@ -14,7 +14,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-const PORT = 5500;
+const PORT = 7000;
 app.use((0, cors_1.default)());
 app.use("/api-docs", swagger_1.swaggerUi.serve, swagger_1.swaggerUi.setup(swagger_1.swaggerSpec));
 app.use("/", taskRoutes_1.default);
@@ -25,7 +25,7 @@ app.get("/sample", (req, res) => {
 });
 app.listen(PORT, () => {
     console.log(`server is running on the port ${PORT}`);
-    console.log("Swagger docs at http://localhost:5500/api-docs");
+    console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
 });
 app.use("/user", userRoutes_1.default);
 app.use("/tasks", taskRoutes_1.default);
