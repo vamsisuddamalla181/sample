@@ -10,14 +10,14 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "https://tasktouser.vercel.app",
+      url: process.env.SWAGGER_HOST || "http://localhost:7000",
     },
   ],
 };
 
 const options = {
   swaggerDefinition,
-  apis: ["./src/modules/**/*.ts"], 
+  apis: ["./src/modules/**/*.ts", "./dist/modules/**/*.js"], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);

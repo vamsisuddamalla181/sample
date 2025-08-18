@@ -16,13 +16,13 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: "https://tasktouser.vercel.app",
+            url: "http://localhost:7000",
         },
     ],
 };
 const options = {
     swaggerDefinition,
-    apis: ["./src/modules/**/*.ts"],
+    apis: ["./src/modules/**/*.ts", "./dist/modules/**/*.js"],
 };
 const swaggerSpec = (0, swagger_jsdoc_1.default)(options);
 exports.swaggerSpec = swaggerSpec;
