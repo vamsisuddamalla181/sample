@@ -4,7 +4,7 @@ import type{ Request,Response} from "express";
 import {mongo} from "./config/db/mongodb"
 import dotenv from "dotenv"
 import cors from "cors"
-// import { swaggerUi, swaggerSpec } from "./docs/swagger";
+import { swaggerUi, swaggerSpec } from "./docs/swagger";
 import userroute from "./modules/user/userRoutes";
 import taskroute from "./modules/tasks/taskRoutes";
 dotenv.config()
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 const PORT=5500
 app.use(cors())
 
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/", taskroute);
 app.use("/", userroute);
 
